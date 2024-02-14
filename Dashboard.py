@@ -21,14 +21,14 @@ class dash1:
 
         #creat main frame
         btn_frame=Frame(self.window)
-        btn_frame.place(x=200,y=100,width=1170,height=610)
+        btn_frame.place(x=200,y=100,width=1330,height=700)
         
 
         main_frame=Frame(btn_frame,bg="gray")
         main_frame.pack(fill=BOTH,expand=1)
 
         #create canvas
-        my_canvas=Canvas(main_frame,height=150,width=1100)
+        my_canvas=Canvas(main_frame,height=150,width=1310)
         my_canvas.pack(side=LEFT,fill=BOTH)
         #Add scrolbar to canvas
         my_scrollbar=ttk.Scrollbar(main_frame,orient=VERTICAL,command=my_canvas.yview)
@@ -107,7 +107,7 @@ class dash1:
 
         btn_demo4=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
-        btn_demo4.grid(row=1,column=3,padx=10,pady=10)
+        btn_demo4.grid(row=6,column=0,padx=10,pady=10)
 
         
 if __name__=="__main__":
