@@ -1,58 +1,113 @@
 from tkinter import *
+from tkinter import ttk
 class dash1:
     def __init__(self,window):
         self.window=window
         self.window.title("Dashboard")
         self.window.geometry("1300x670+20+20")
-        self.window.config(bg='#F2E3D5')
+        self.window.config(bg='#FFFFFF')
 
+        #title
         title=Label(self.window,text='TOOLKIT',compound=LEFT
-                    ,font=('Georgia',30,'bold'),bg='#024959',fg='White',anchor="w",padx=20)
+                    ,font=('Georgia',30,'bold'),bg='#575200',fg='White',anchor="w",padx=20)
         title.place(x=0,y=0,relwidth=1,height=70)
 
+        #welcome title with clock
         self.lbl_clock=Label(self.window,text='Welcome To Tookit \t\t Date:dd-mm-yyyy\t\t Time:hh:mm:ss',
-                    font=('Georgia',15),bg='#012E40',fg='White')
+                    font=('Georgia',15),bg='#8a6626',fg='White')
         self.lbl_clock.place(x=0,y=70,relwidth=1,height=30)
 
-        framef=Frame(self.window,bd=2,relief=RIDGE,bg='#F2E3D5')
-        framef.place(x=200,y=102,width=1200,height=600)
 
-        btn_calculator=Button(framef,text='Claculator',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2',borderwidth=2)
-        btn_calculator.place(x=70,y=50,height=130,width=250)
 
-        btn_Wheather=Button(framef,text='Weather',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_Wheather.place(x=420,y=50,height=130,width=250)
+        #creat main frame
+        btn_frame=Frame(self.window)
+        btn_frame.place(x=200,y=100,width=1170,height=610)
         
-        btn_notepad=Button(framef,text='Notepad',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_notepad.place(x=770,y=50,height=130,width=250)
 
-        btn_qr_gen=Button(framef,text='QR Generator',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_qr_gen.place(x=70,y=200,height=130,width=250)
+        main_frame=Frame(btn_frame,bg="gray")
+        main_frame.pack(fill=BOTH,expand=1)
 
-        btn_clock=Button(framef,text='Clock',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_clock.place(x=420,y=200,height=130,width=250)
+        #create canvas
+        my_canvas=Canvas(main_frame,height=150,width=1100)
+        my_canvas.pack(side=LEFT,fill=BOTH)
+        #Add scrolbar to canvas
+        my_scrollbar=ttk.Scrollbar(main_frame,orient=VERTICAL,command=my_canvas.yview)
+        my_scrollbar.pack(side=RIGHT,fill=Y)
+
+        #configure the canvas
+
+        my_canvas.configure(yscrollcommand=my_scrollbar.set)
+        my_canvas.bind('<Configure>',lambda e:my_canvas.configure(scrollregion=my_canvas.bbox("all")))
+
+
+        #create another frame Inside canvas
+        second_frame=Frame(my_canvas)
+        #add new frame to window in the canvas
+        my_canvas.create_window((0,0),window=second_frame,anchor="nw")
+
+        #buttons 
+        btn_calculator=Button(second_frame,text='Calculator',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',borderwidth=2,height=3,width=15)
+        btn_calculator.grid(row=1,column=0,padx=10,pady=10)
+
+        btn_Wheather=Button(second_frame,text='Weather',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_Wheather.grid(row=2,column=0,padx=10,pady=10)
+
+        btn_notepad=Button(second_frame,text='Notepad',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_notepad.grid(row=3,column=0,padx=10,pady=10)
+
+        btn_pdf_viewer=Button(second_frame,text='PDF Viewer',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_pdf_viewer.grid(row=4,column=0,padx=10,pady=10)
+
+        btn_qr_gen=Button(second_frame,text='QR Generator',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_qr_gen.grid(row=5,column=0,padx=10,pady=10)
+
+        btn_clock=Button(second_frame,text='Clock',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_clock.grid(row=1,column=1,padx=10,pady=10)
         
-        btn_speed_check=Button(framef,text='Speed Check',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_speed_check.place(x=770,y=200,height=130,width=250)
+        btn_speed_check=Button(second_frame,text='Speed Check',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_speed_check.grid(row=2,column=1,padx=10,pady=10)
 
-        btn_to_do=Button(framef,text='TO DO',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_to_do.place(x=70,y=350,height=130,width=250)
+        btn_img_comp=Button(second_frame,text='IMG Comp',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_img_comp.grid(row=3,column=1,padx=10,pady=10)
 
-        btn_white_bord=Button(framef,text='White Bord',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_white_bord.place(x=420,y=350,height=130,width=250)
+        btn_to_do=Button(second_frame,text='TO DO',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_to_do.grid(row=4,column=1,padx=10,pady=10)
+
+        btn_white_bord=Button(second_frame,text='White Bord',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_white_bord.grid(row=5,column=1,padx=10,pady=10)
         
-        btn_calender=Button(framef,text='Calender',font=('Georgia',20),bg="#3CA6A6",fg='black',
-                            cursor='hand2')
-        btn_calender.place(x=770,y=350,height=130,width=250)
+        btn_calender=Button(second_frame,text='Calender',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_calender.grid(row=1,column=2,padx=10,pady=10)
 
+        btn_translator=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_translator.grid(row=2,column=2,padx=10,pady=10)
+
+        btn_demo1=Button(second_frame,text='Demo1',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_demo1.grid(row=3,column=2,padx=10,pady=10)
+
+        btn_demo2=Button(second_frame,text='demo2',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_demo2.grid(row=4,column=2,padx=10,pady=10)
+        btn_demo3=Button(second_frame,text='demo3',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_demo3.grid(row=5,column=2,padx=10,pady=10)
+
+        btn_demo4=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
+                            cursor='hand2',height=3,width=15)
+        btn_demo4.grid(row=1,column=3,padx=10,pady=10)
 
         
 if __name__=="__main__":
