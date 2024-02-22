@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from Calculator import CalculatorClass
 class dash1:
     def __init__(self,window):
         self.window=window
@@ -17,25 +18,24 @@ class dash1:
                     font=('Georgia',15),bg='#8a6626',fg='White')
         self.lbl_clock.place(x=0,y=70,relwidth=1,height=30)
 
+        menu_frame=Frame(self.window,bg="Dark gray")
+        menu_frame.place(x=0,y=100,width=200,height=610)
 
-
-        #creat main frame
+        #creat button frame
         btn_frame=Frame(self.window)
         btn_frame.place(x=200,y=100,width=1170,height=610)
-        
-
+    
         main_frame=Frame(btn_frame,bg="gray")
         main_frame.pack(fill=BOTH,expand=1)
 
         #create canvas
-        my_canvas=Canvas(main_frame,height=150,width=1100)
+        my_canvas=Canvas(main_frame,height=150,width=1150)
         my_canvas.pack(side=LEFT,fill=BOTH)
         #Add scrolbar to canvas
         my_scrollbar=ttk.Scrollbar(main_frame,orient=VERTICAL,command=my_canvas.yview)
         my_scrollbar.pack(side=RIGHT,fill=Y)
 
         #configure the canvas
-
         my_canvas.configure(yscrollcommand=my_scrollbar.set)
         my_canvas.bind('<Configure>',lambda e:my_canvas.configure(scrollregion=my_canvas.bbox("all")))
 
@@ -47,7 +47,7 @@ class dash1:
 
         #buttons 
         btn_calculator=Button(second_frame,text='Calculator',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',borderwidth=2,height=3,width=15)
+                            cursor='hand2',borderwidth=2,height=3,width=15,command=self.calculator)
         btn_calculator.grid(row=1,column=0,padx=10,pady=10)
 
         btn_Wheather=Button(second_frame,text='Weather',font=('Georgia',20),bg="#A3842C",fg='black',
@@ -108,6 +108,11 @@ class dash1:
         btn_demo4=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_demo4.grid(row=1,column=3,padx=10,pady=10)
+
+#-----------------------------------------------------------------------------------------------------------------
+    def calculator(self):
+        self.new_win=Toplevel(self.window)
+        self.new_obj=CalculatorClass(self.new_win)
 
         
 if __name__=="__main__":
