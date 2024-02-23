@@ -1,3 +1,4 @@
+import time
 from tkinter import *
 from tkinter import ttk
 from Calculator import CalculatorClass
@@ -22,10 +23,10 @@ class dash1:
         menu_frame.place(x=0,y=100,width=200,height=610)
 
         #creat button frame
-        btn_frame=Frame(self.window)
-        btn_frame.place(x=200,y=100,width=1170,height=610)
+        self.btn_frame=Frame(self.window)
+        self.btn_frame.place(x=200,y=100,width=1170,height=610)
     
-        main_frame=Frame(btn_frame,bg="gray")
+        main_frame=Frame(self.btn_frame,bg="gray")
         main_frame.pack(fill=BOTH,expand=1)
 
         #create canvas
@@ -46,73 +47,113 @@ class dash1:
         my_canvas.create_window((0,0),window=second_frame,anchor="nw")
 
         #buttons 
-        btn_calculator=Button(second_frame,text='Calculator',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',borderwidth=2,height=3,width=15,command=self.calculator)
+        calculator_logo = PhotoImage(file="img/calculator_logo.png")
+        width = 70
+        height = 70
+        calculator_logo = calculator_logo.subsample(calculator_logo.width() // width, calculator_logo.height() // height)
+        btn_calculator = Button(second_frame, image=calculator_logo, text='Calculator', font=('Georgia', 14), bg="#A3842C", fg='black',
+                                cursor='hand2', borderwidth=2, compound="top", height=110, width=230, command=self.calculator)
+       
+        btn_calculator.image = calculator_logo 
         btn_calculator.grid(row=1,column=0,padx=10,pady=10)
 
-        btn_Wheather=Button(second_frame,text='Weather',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',height=3,width=15)
+        wheather_logo = PhotoImage(file="img/whether_logo.png")
+        width = 70
+        height = 70
+        wheather_logo = wheather_logo.subsample(wheather_logo.width() // width, wheather_logo.height() // height)
+        btn_Wheather=Button(second_frame,text='Weather',image=wheather_logo,font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',compound="top", height=110, width=230,command=self.calculator)
+        btn_Wheather.image = wheather_logo 
         btn_Wheather.grid(row=2,column=0,padx=10,pady=10)
 
-        btn_notepad=Button(second_frame,text='Notepad',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',height=3,width=15)
+        notepad_logo = PhotoImage(file="img/notepad_logo.png")
+        width = 70
+        height = 70
+        notepad_logo = notepad_logo.subsample(notepad_logo.width() // width, notepad_logo.height() // height)
+        btn_notepad=Button(second_frame,text='Notepad',image=notepad_logo,font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',compound="top", height=110, width=230)
+        btn_notepad.image = notepad_logo 
         btn_notepad.grid(row=3,column=0,padx=10,pady=10)
 
-        btn_pdf_viewer=Button(second_frame,text='PDF Viewer',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',height=3,width=15)
+        pdf_logo = PhotoImage(file="img/pdf_logo.png")
+        width = 70
+        height = 70
+        pdf_logo = pdf_logo.subsample(pdf_logo.width() // width, pdf_logo.height() // height)
+        btn_pdf_viewer=Button(second_frame,text='PDF Viewer',image=pdf_logo,font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',compound="top", height=110, width=230)
+        btn_pdf_viewer.image = pdf_logo
         btn_pdf_viewer.grid(row=4,column=0,padx=10,pady=10)
 
-        btn_qr_gen=Button(second_frame,text='QR Generator',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',height=3,width=15)
+        qr_logo = PhotoImage(file="img/qr_logo.png")
+        width = 70
+        height = 70
+        qr_logo = qr_logo.subsample(qr_logo.width() // width, qr_logo.height() // height)
+        btn_qr_gen=Button(second_frame,text='QR Generator',image=qr_logo,font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',compound="top", height=110, width=230)
+        btn_qr_gen.image = qr_logo
         btn_qr_gen.grid(row=5,column=0,padx=10,pady=10)
 
-        btn_clock=Button(second_frame,text='Clock',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',height=3,width=15)
+        clock_logo = PhotoImage(file="img/clock_logo.png")
+        width = 70
+        height = 70
+        clock_logo = clock_logo.subsample(clock_logo.width() // width, clock_logo.height() // height)
+        btn_clock=Button(second_frame,image=clock_logo,text='Clock',font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2', compound="top",height=110,width=230)
+        btn_clock.image = clock_logo
         btn_clock.grid(row=1,column=1,padx=10,pady=10)
         
-        btn_speed_check=Button(second_frame,text='Speed Check',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_speed_check=Button(second_frame,text='Speed Check',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_speed_check.grid(row=2,column=1,padx=10,pady=10)
 
-        btn_img_comp=Button(second_frame,text='IMG Comp',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_img_comp=Button(second_frame,text='IMG Comp',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_img_comp.grid(row=3,column=1,padx=10,pady=10)
 
-        btn_to_do=Button(second_frame,text='TO DO',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_to_do=Button(second_frame,text='TO DO',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_to_do.grid(row=4,column=1,padx=10,pady=10)
 
-        btn_white_bord=Button(second_frame,text='White Bord',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_white_bord=Button(second_frame,text='White Bord',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_white_bord.grid(row=5,column=1,padx=10,pady=10)
         
-        btn_calender=Button(second_frame,text='Calender',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_calender=Button(second_frame,text='Calender',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_calender.grid(row=1,column=2,padx=10,pady=10)
 
-        btn_translator=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_translator=Button(second_frame,text='Translator',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_translator.grid(row=2,column=2,padx=10,pady=10)
 
-        btn_demo1=Button(second_frame,text='Demo1',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_demo1=Button(second_frame,text='Demo1',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_demo1.grid(row=3,column=2,padx=10,pady=10)
 
-        btn_demo2=Button(second_frame,text='demo2',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_demo2=Button(second_frame,text='demo2',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_demo2.grid(row=4,column=2,padx=10,pady=10)
-        btn_demo3=Button(second_frame,text='demo3',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_demo3=Button(second_frame,text='demo3',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_demo3.grid(row=5,column=2,padx=10,pady=10)
 
-        btn_demo4=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
+        btn_demo4=Button(second_frame,text='Translator',font=('Georgia',14),bg="#A3842C",fg='black',
                             cursor='hand2',height=3,width=15)
         btn_demo4.grid(row=1,column=3,padx=10,pady=10)
-
+        
+        self.update_content()
 #-----------------------------------------------------------------------------------------------------------------
     def calculator(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=CalculatorClass(self.new_win)
+    
+    def update_content(self):
+        time1=time.strftime('%I:%M:%S')
+        date1=time.strftime("%d-%m-%Y")
+        self.lbl_clock.config(text=f'Welcome To Supplement Shop Management System \t\t Date:{str(date1)}\t\t Time:{str(time1)}')
+        self.lbl_clock.after(200,self.update_content)
 
         
 if __name__=="__main__":
