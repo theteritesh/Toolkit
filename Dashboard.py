@@ -2,6 +2,7 @@ import time
 from tkinter import *
 from tkinter import ttk
 from Calculator import CalculatorClass
+from Wheather import WheatherClass
 class dash1:
     def __init__(self,window):
         self.window=window
@@ -62,7 +63,7 @@ class dash1:
         height = 70
         wheather_logo = wheather_logo.subsample(wheather_logo.width() // width, wheather_logo.height() // height)
         btn_Wheather=Button(second_frame,text='Weather',image=wheather_logo,font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',compound="top", height=110, width=230,command=self.calculator)
+                            cursor='hand2',compound="top", height=110, width=230,command=self.wheather)
         btn_Wheather.image = wheather_logo 
         btn_Wheather.grid(row=1,column=1,padx=10,pady=10)
 
@@ -199,6 +200,11 @@ class dash1:
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=CalculatorClass(self.new_win)
+    def wheather(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=WheatherClass(self.new_win)
     
     def update_content(self):
         time1=time.strftime('%I:%M:%S')
