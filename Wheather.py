@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter.ttk import Style
 import requests
 from tkinter import messagebox
 from PIL import Image,ImageTk
