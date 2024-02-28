@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from Calculator import CalculatorClass
 from Notepad import NotepadClass
+from PDFViewer import PDFViewerClass
 from Wheather import WheatherClass
 class dash1:
     def __init__(self,window):
@@ -82,7 +83,7 @@ class dash1:
         height = 70
         pdf_logo = pdf_logo.subsample(pdf_logo.width() // width, pdf_logo.height() // height)
         btn_pdf_viewer=Button(second_frame,text='PDF Viewer',image=pdf_logo,font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',compound="top", height=110, width=230)
+                            cursor='hand2',compound="top", height=110, width=230,command=self.pdfViewer)
         btn_pdf_viewer.image = pdf_logo
         btn_pdf_viewer.grid(row=1,column=3,padx=10,pady=10)
 
@@ -211,6 +212,11 @@ class dash1:
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=NotepadClass(self.new_win)
+    def pdfViewer(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=PDFViewerClass(self.new_win)
     
     def update_content(self):
         time1=time.strftime('%I:%M:%S')

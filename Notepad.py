@@ -7,7 +7,7 @@ class NotepadClass:
 
         self.window=window
         self.window.title("Notepad")
-        self.window.geometry("600x600+600+200")
+        self.window.geometry("600x600+600+100")
         self.window.config(bg='gray')
         self.window.resizable(False,False)
         self.window.focus_force()
