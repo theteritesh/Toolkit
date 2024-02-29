@@ -13,6 +13,8 @@ class PDFViewerClass:
         self.window.config(bg='white')
         self.window.resizable(False,False)
         self.window.focus_force()
+        image_icon=PhotoImage(file="img/pdf_logo.png")
+        self.window.iconphoto(False,image_icon)
 
         def BrowesFile():
             filename=filedialog.askopenfilename(initialdir=os.getcwd(),title="Select PDF File",filetype=(("PDF File",".pdf"),("PDF File",".PDF"),("All File",".txt")))

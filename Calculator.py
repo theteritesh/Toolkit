@@ -10,6 +10,8 @@ class CalculatorClass:
         self.window.config(bg='gray')
         self.window.resizable(False,False)
         self.window.focus_force()
+        image_icon=PhotoImage(file="img/calculator_logo.png")
+        self.window.iconphoto(False,image_icon)
 
 
         #Entry

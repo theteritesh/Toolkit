@@ -11,6 +11,8 @@ class NotepadClass:
         self.window.config(bg='gray')
         self.window.resizable(False,False)
         self.window.focus_force()
+        image_icon=PhotoImage(file="img/notepad_logo.png")
+        self.window.iconphoto(False,image_icon)
 
         def saveFile():
             openFile=filedialog.asksaveasfile(mode='w',defaultextension='.txt')

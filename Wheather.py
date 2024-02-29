@@ -12,6 +12,8 @@ class WheatherClass:
         self.window.config(bg='light gray')
         self.window.resizable(False,False)
         self.window.focus_force()
+        image_icon=PhotoImage(file="img/whether_logo.png")
+        self.window.iconphoto(False,image_icon)
 
     #------------------------------------------------------------------------------------------
         #function to get whether info from openwheathermap Api
