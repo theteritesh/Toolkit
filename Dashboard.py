@@ -2,6 +2,7 @@ import time
 from tkinter import *
 from tkinter import ttk
 from Calculator import CalculatorClass
+from Clock import  WorldClockClass
 from Notepad import NotepadClass
 from PDFViewer import PDFViewerClass
 from QRGenerator import QRGeneratorClass
@@ -101,10 +102,10 @@ class dash1:
         width = 70
         height = 70
         clock_logo = clock_logo.subsample(clock_logo.width() // width, clock_logo.height() // height)
-        btn_clock=Button(second_frame,image=clock_logo,text='Clock',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2', compound="top",height=110,width=230)
-        btn_clock.image = clock_logo
-        btn_clock.grid(row=2,column=1,padx=10,pady=10)
+        btn_world_clock=Button(second_frame,image=clock_logo,text='World Clock',font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2', compound="top",height=110,width=230,command=self.wordclock)
+        btn_world_clock.image = clock_logo
+        btn_world_clock.grid(row=2,column=1,padx=10,pady=10)
         
         speed_test_logo = PhotoImage(file="img/speed_test_logo.png")
         width = 70
@@ -223,7 +224,11 @@ class dash1:
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=QRGeneratorClass(self.new_win)
-    
+    def wordclock(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=WorldClockClass(self.new_win)
     def update_content(self):
         time1=time.strftime('%I:%M:%S')
         date1=time.strftime("%d-%m-%Y")

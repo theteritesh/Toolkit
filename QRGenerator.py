@@ -13,7 +13,7 @@ class QRGeneratorClass:
         self.window.resizable(False,False)
         self.window.focus_force()
 
-        image_icon=PhotoImage(file="img/qr_page_icon.png")
+        image_icon=PhotoImage(file="img/qr_page_logo.png")
         self.window.iconphoto(False,image_icon)
 
         def generate():
