@@ -27,16 +27,15 @@ class dash1:
         menu_frame=Frame(self.window,bg="Dark gray")
         menu_frame.place(x=0,y=100,width=200,height=610)
 
-        #creat main frame
-        btn_frame=Frame(self.window)
-        btn_frame.place(x=200,y=100,width=1170,height=610)
-        
-
-        main_frame=Frame(btn_frame,bg="gray")
+        #creat button frame
+        self.btn_frame=Frame(self.window)
+        self.btn_frame.place(x=200,y=100,width=1170,height=610)
+    
+        main_frame=Frame(self.btn_frame,bg="gray")
         main_frame.pack(fill=BOTH,expand=1)
 
         #create canvas
-        my_canvas=Canvas(main_frame,height=150,width=1100)
+        my_canvas=Canvas(main_frame,height=150,width=1150)
         my_canvas.pack(side=LEFT,fill=BOTH)
         #Add scrolbar to canvas
         my_scrollbar=ttk.Scrollbar(main_frame,orient=VERTICAL,command=my_canvas.yview)
@@ -189,9 +188,52 @@ class dash1:
         btn_demo3.image = demo_logo3
         btn_demo3.grid(row=4,column=2,padx=10,pady=10)
 
-        btn_demo4=Button(second_frame,text='Translator',font=('Georgia',20),bg="#A3842C",fg='black',
-                            cursor='hand2',height=3,width=15)
-        btn_demo4.grid(row=1,column=3,padx=10,pady=10)
+        demo_logo4 = PhotoImage(file="img/demo_logo.png")
+        width = 70
+        height = 70
+        demo_logo4 = demo_logo4.subsample(demo_logo4.width() // width, demo_logo4.height() // height)
+        btn_demo4=Button(second_frame,image=demo_logo4,text='demo4',font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',height=110,width=230,compound="top")
+        btn_demo4.image = demo_logo4
+        btn_demo4.grid(row=4,column=3,padx=10,pady=10)
+        
+        self.update_content()
+#-----------------------------------------------------------------------------------------------------------------
+    def calculator(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=CalculatorClass(self.new_win)
+    def wheather(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=WheatherClass(self.new_win)
+    def notepad(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=NotepadClass(self.new_win)
+    def pdfViewer(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=PDFViewerClass(self.new_win)
+    def orGenerator(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=QRGeneratorClass(self.new_win)
+    def wordclock(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=WorldClockClass(self.new_win)
+    def update_content(self):
+        time1=time.strftime('%I:%M:%S')
+        date1=time.strftime("%d-%m-%Y")
+        self.lbl_clock.config(text=f'Welcome To Supplement Shop Management System \t\t Date:{str(date1)}\t\t Time:{str(time1)}')
+        self.lbl_clock.after(200,self.update_content)
 
         
 if __name__=="__main__":
