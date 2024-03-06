@@ -2,7 +2,7 @@ import time
 from tkinter import *
 from tkinter import ttk
 from Calculator import CalculatorClass
-from Clock import  WorldClockClass
+from WorldClock import  WorldClockClass
 from Notepad import NotepadClass
 from PDFViewer import PDFViewerClass
 from QRGenerator import QRGeneratorClass

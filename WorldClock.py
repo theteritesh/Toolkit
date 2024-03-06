@@ -14,7 +14,7 @@ class WorldClockClass:
         image_icon=PhotoImage(file="img/clock_logo.png")
         self.window.iconphoto(False,image_icon)
 
-        lbl=Label(text="Select Country",font=("Elephant",20,"bold"),bg='#AE2321',fg="white")
+        lbl=Label(self.window,text="Select Country",font=("Elephant",20,"bold"),bg='#AE2321',fg="white")
         lbl.grid(row=0, column=1, padx=40, pady=15, sticky="w")
     
         self.date_label = Label(window, font=("Georgia", 16),bg='#AE2321',fg="white")
