@@ -2,6 +2,7 @@ import time
 from tkinter import *
 from tkinter import ttk
 from Calculator import CalculatorClass
+from SpeedTest import SpeedTestClass
 from WorldClock import  WorldClockClass
 from Notepad import NotepadClass
 from PDFViewer import PDFViewerClass
@@ -112,7 +113,7 @@ class dash1:
         height = 70
         speed_test_logo = speed_test_logo.subsample(speed_test_logo.width() // width, speed_test_logo.height() // height)
         btn_speed_test=Button(second_frame,image=speed_test_logo,text='Speed Test',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
+                            cursor='hand2',height=110,width=230,compound="top",command=self.speedtest)
         btn_speed_test.image = speed_test_logo
         btn_speed_test.grid(row=2,column=2,padx=10,pady=10)
         
@@ -229,6 +230,12 @@ class dash1:
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=WorldClockClass(self.new_win)
+
+    def speedtest(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=SpeedTestClass(self.new_win)
     def update_content(self):
         time1=time.strftime('%I:%M:%S')
         date1=time.strftime("%d-%m-%Y")
