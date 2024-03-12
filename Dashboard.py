@@ -144,7 +144,7 @@ class dash1:
         height = 70
         white_board_logo = white_board_logo.subsample(white_board_logo.width() // width, white_board_logo.height() // height)
         btn_white_bord=Button(second_frame,image=white_board_logo,text='White Board',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
+                            cursor='hand2',height=110,width=230,compound="top", command=self.whiteBoard)
         btn_white_bord.image = white_board_logo
         btn_white_bord.grid(row=3,column=1,padx=10,pady=10)
         
@@ -171,7 +171,7 @@ class dash1:
         height = 70
         RollDices = RollDices.subsample(RollDices.width() // width, RollDices.height() // height)
         btn_RollDices=Button(second_frame,image=RollDices,text='Demo1',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
+                            cursor='hand2',height=110,width=230,compound="top" ,command=self.rolldices)
         btn_RollDices.image = RollDices
         btn_RollDices.grid(row=4,column=0,padx=10,pady=10)
 
@@ -180,7 +180,7 @@ class dash1:
         height = 70
         Text_To_Speech = Text_To_Speech.subsample(Text_To_Speech.width() // width, Text_To_Speech.height() // height)
         btn_Text_To_Speech=Button(second_frame,image=Text_To_Speech,text='Text_To_Speech',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
+                            cursor='hand2',height=110,width=230,compound="top",command=self.textToSpeech)
         btn_Text_To_Speech.image = Text_To_Speech
         btn_Text_To_Speech.grid(row=4,column=1,padx=10,pady=10)
         
@@ -239,18 +239,18 @@ class dash1:
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=TranslatorClass(self.new_win)
-    def WhiteBoard(self):
+    def whiteBoard(self):
         if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=WhiteBoardClass(self.new_win)
-    def RollDices(self):
+    def rolldices(self):
         if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=RollDicesClass(self.new_win)   
 
-    def Text_To_Speech(self):
+    def textToSpeech(self):
         if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)

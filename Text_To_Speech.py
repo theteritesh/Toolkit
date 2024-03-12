@@ -6,7 +6,7 @@ engine=pyttsx3.init()
 class Text_To_SpeechClass:
     def __init__(self, window):
         self.window = window
-        self.window.title("RollDices")
+        self.window.title("Text To Speech")
         self.window.geometry("1000x600+300+100")
         self.window.config(bg="white")
         self.window.resizable(False,False)
@@ -35,6 +35,6 @@ class Text_To_SpeechClass:
 
 
 if __name__=="__main__":
-            window=Tk()
-            obj = Text_To_SpeechClass(window)
-            window.mainloop()
+    window=Tk()
+    obj = Text_To_SpeechClass(window)
+    window.mainloop()
