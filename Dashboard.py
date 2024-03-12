@@ -7,7 +7,12 @@ from WorldClock import  WorldClockClass
 from Notepad import NotepadClass
 from PDFViewer import PDFViewerClass
 from QRGenerator import QRGeneratorClass
+from Translator import TranslatorClass
 from Wheather import WheatherClass
+from WhiteBoard import WhiteBoardClass
+from RolllDices import RollDicesClass
+from Text_To_Speech import Text_To_SpeechClass
+
 class dash1:
     def __init__(self,window):
         self.window=window
@@ -139,8 +144,8 @@ class dash1:
         width = 70
         height = 70
         white_board_logo = white_board_logo.subsample(white_board_logo.width() // width, white_board_logo.height() // height)
-        btn_white_bord=Button(second_frame,image=white_board_logo,text='White Bord',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
+        btn_white_bord=Button(second_frame,image=white_board_logo,text='White Board',font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',height=110,width=230,compound="top", command=self.whiteBoard)
         btn_white_bord.image = white_board_logo
         btn_white_bord.grid(row=3,column=1,padx=10,pady=10)
         
@@ -158,27 +163,27 @@ class dash1:
         height = 70
         translator_logo = translator_logo.subsample(translator_logo.width() // width, translator_logo.height() // height)
         btn_translator=Button(second_frame,image=translator_logo,text='Translator',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
+                            cursor='hand2',height=110,width=230,compound="top",command=self.translator)
         btn_translator.image = translator_logo
         btn_translator.grid(row=3,column=3,padx=10,pady=10)
 
-        demo_logo1 = PhotoImage(file="img/demo_logo.png")
+        RollDices = PhotoImage(file="Img/RollDices.png")
         width = 70
         height = 70
-        demo_logo1 = demo_logo1.subsample(demo_logo1.width() // width, demo_logo1.height() // height)
-        btn_demo1=Button(second_frame,image=demo_logo1,text='Demo1',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
-        btn_demo1.image = demo_logo1
-        btn_demo1.grid(row=4,column=0,padx=10,pady=10)
+        RollDices = RollDices.subsample(RollDices.width() // width, RollDices.height() // height)
+        btn_RollDices=Button(second_frame,image=RollDices,text='Demo1',font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',height=110,width=230,compound="top" ,command=self.rolldices)
+        btn_RollDices.image = RollDices
+        btn_RollDices.grid(row=4,column=0,padx=10,pady=10)
 
-        demo_logo2 = PhotoImage(file="img/demo_logo.png")
+        Text_To_Speech = PhotoImage(file="img/demo_logo.png")
         width = 70
         height = 70
-        demo_logo2 = demo_logo2.subsample(demo_logo2.width() // width, demo_logo2.height() // height)
-        btn_demo2=Button(second_frame,image=demo_logo2,text='demo2',font=('Georgia',14),bg="#A3842C",fg='black',
-                            cursor='hand2',height=110,width=230,compound="top")
-        btn_demo2.image = demo_logo2
-        btn_demo2.grid(row=4,column=1,padx=10,pady=10)
+        Text_To_Speech = Text_To_Speech.subsample(Text_To_Speech.width() // width, Text_To_Speech.height() // height)
+        btn_Text_To_Speech=Button(second_frame,image=Text_To_Speech,text='Text_To_Speech',font=('Georgia',14),bg="#A3842C",fg='black',
+                            cursor='hand2',height=110,width=230,compound="top",command=self.textToSpeech)
+        btn_Text_To_Speech.image = Text_To_Speech
+        btn_Text_To_Speech.grid(row=4,column=1,padx=10,pady=10)
         
         demo_logo3 = PhotoImage(file="img/demo_logo.png")
         width = 70
@@ -236,6 +241,35 @@ class dash1:
             self.new_win.destroy()
         self.new_win=Toplevel(self.window)
         self.new_obj=SpeedTestClass(self.new_win)
+    def translator(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=TranslatorClass(self.new_win)
+    def whiteBoard(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=WhiteBoardClass(self.new_win)
+    def rolldices(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=RollDicesClass(self.new_win)   
+
+    def textToSpeech(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=Text_To_SpeechClass(self.new_win)   
+
+    def Text_To_Speech(self):
+        if hasattr(self, 'new_win') and isinstance(self.new_win, Toplevel):
+            self.new_win.destroy()
+        self.new_win=Toplevel(self.window)
+        self.new_obj=Text_To_SpeechClass(self.new_win)       
+    
+
     def update_content(self):
         time1=time.strftime('%I:%M:%S')
         date1=time.strftime("%d-%m-%Y")
