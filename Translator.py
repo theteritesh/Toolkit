@@ -8,17 +8,14 @@ class TranslatorClass:
     def __init__(self, window):
         self.window = window
         self.window.title("Translator")
-        self.window.geometry("1000x600+600+100")
+        self.window.geometry("1050x380+200+200")
         self.window.config(bg="white")
 
         self.language = googletrans.LANGUAGES
         self.languageV = list(self.language.values())
 
-        # combo1 = ttk.Combobox(self.window, values=languageV, font="Roboto 14", state="readonly")
-        # combo1.place(x=10, y=20)
-        # combo1.set("ENGLISH")
         self.combo1 = ttk.Combobox(self.window, values=self.languageV, font="Roboto 14", state="readonly")
-        self.combo1.place(x=10, y=20)
+        self.combo1.place(x=140, y=20)
         self.combo1.set("ENGLISH")
 
         label1 = Label(self.window, text="ENGLISH", font=("segoe", 30, "bold"), bg="white", width=18, bd=5, relief=GROOVE)
@@ -36,20 +33,15 @@ class TranslatorClass:
         scrollbar1.configure(command=self.text1.yview)
         self.text1.configure(yscrollcommand=scrollbar1.set)
 
-        # combo2 = ttk.Combobox(self.window, values=languageV, font="Roboto 14", state="readonly")
-        # combo2.place(x=730, y=20)
-        # combo2.set("SELECT LANGUAGE")
-        
-
         self.combo2 = ttk.Combobox(self.window, values=self.languageV, font="Roboto 14", state="readonly")
         self.combo2.place(x=730, y=20)
         self.combo2.set("SELECT LANGUAGE")
 
         label2 = Label(self.window, text="ENGLISH", font="segoe 30 bold", bg="white", width=18, bd=5, relief=GROOVE)
-        label2.place(x=620, y=50)
+        label2.place(x=600, y=50)
 
         f1 = Frame(self.window, bg="Black", bd=5)
-        f1.place(x=620, y=118, width=440, height=210)
+        f1.place(x=600, y=118, width=440, height=210)
 
         self.text2 = Text(f1, font="Roboto 20", bg="white", relief=GROOVE, wrap=WORD)
         self.text2.place(x=0, y=0, width=430, height=200)
@@ -63,11 +55,10 @@ class TranslatorClass:
         # Translate button
         translate = Button(self.window, text="Translate", font="Roboto 15 bold italic", activebackground="white",
                            cursor="hand2", bd=5, bg="red", fg="white", command=self.translate_now)
-        translate.place(x=30, y=300)
+        translate.place(x=470, y=200)
 
     def translate_now(self):
         text_ = self.text1.get(1.0, END)
-        print(text_)
         c2 = self.combo1.get()  # Changed from combo1 to self.combo1
         c3 = self.combo2.get()
         words = TextBlob(text_)
